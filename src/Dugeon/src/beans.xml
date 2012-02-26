@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd" xmlns:aop="http://www.springframework.org/schema/aop">
+
+    <bean id="keyMeaning" class="com.rmit.sea.controller.DefaultKeyMeaning" />
+    <bean id="mapGenerator" class="com.rmit.sea.gameengine.mapmodel.RandomMapGenerator" />
+    <bean id="losg" class="com.rmit.sea.gameengine.model.lineofsight.LOSTrigoGenerator" />
+    <bean id="gameViewRenderer" class="com.rmit.sea.view.renderers.TextCenterRenderer" />
+    <bean id="welcomePanel" class="com.rmit.sea.view.WelcomePanel" />
+
+    <bean id="gameKeyListener" class="com.rmit.sea.controller.GameKeyListener">
+        <property name="keyMeaning" ref="keyMeaning" />
+    </bean>
+    
+    <bean id="gameEngine" class="com.rmit.sea.gameengine.model.GameEngine">    
+        <property name="mapGenerator" ref="mapGenerator" />
+        <property name="gameKeyListener" ref="gameKeyListener" />
+        <property name="losg" ref="losg" />
+    </bean>
+    
+    <bean id="informationPanel" class="com.rmit.sea.view.InformationPanel">
+        <property name="gameEngine" ref="gameEngine" />
+    </bean>
+    
+    <bean id="gameView" class="com.rmit.sea.view.GameView">
+        <property name="gameEngine" ref="gameEngine"/>
+        <property name="gameViewRenderer" ref="gameViewRenderer"/>
+    </bean>
+    
+    <bean id="playerInformationPanel" class="com.rmit.sea.view.PlayerInformationPanel">
+        <property name="gameEngine" ref="gameEngine" />    
+    </bean>
+    
+    <bean id="gameFrame" class="com.rmit.sea.view.GameFrame">
+        <constructor-arg index="0">
+            <ref bean="gameEngine"/>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <ref bean="gameView"/>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <ref bean="informationPanel"/>
+        </constructor-arg>
+        <constructor-arg index="3">
+            <ref bean="playerInformationPanel"/>
+        </constructor-arg>
+        <constructor-arg index="4">
+            <ref bean="welcomePanel"/>
+        </constructor-arg>
+    </bean>
+    
+</beans>

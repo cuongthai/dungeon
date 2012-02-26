@@ -1,0 +1,13 @@
+build/
+dist/
+nbproject/*
+*.DS_Store
+*.classpath
+*.project
+*.class
+*.properties
+
+src/Dugeon/nbproject/*
+src/Dugeon/high_score.dat
+
+

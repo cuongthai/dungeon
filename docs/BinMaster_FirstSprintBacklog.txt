@@ -1,0 +1,92 @@
+1.Research and use Spring Framework
+	*Write unit test
+
+
+2.Create Map Component, type
+	*Generate maze
+	*Generate cavern
+	*Generate Shape Room
+
+3.I can attack in one turn
+	*Get action from keyboard
+	*Process action, update model and render view
+
+4.I can go to random generated map when I switch level
+	*Algorithm generate Random map
+	*Render Map To the View
+	*Change the level will cause to generate a new map and update the view
+
+5.Player can go to door(or stair) to go down or up to a new level
+	*Implement door and a go down and up button
+	*Render new level
+
+
+
+6.I can have different activation distance
+	*Line of Sight algorithm
+	*Each turn, Boss/Monster will check their activation distance
+	*Use appropriate algorithm to response to the result of the scanning above
+
+7.Create monster
+	*Create monster
+	*Monsters will chase and attack when next to player
+	*Easy, medium, hard monster with different color depending on how deep the player has gone
+
+
+8.Monster can intelligently do something when it detects a player
+	*Monster 's turn, check the player's in activation distance
+	*Change the AI depend on its type
+		
+
+9.Player movement
+	*Get key from user
+	*Process key meaning to the player's model
+	*Render the view
+
+
+10.Player can move
+	*Player can move by shifting all coordinate around them
+
+
+11.Implement skill
+	*Implement a class to receive and execute skill
+	*Implement skill that implement the right skill interface
+
+
+12.I can change the skill while playing the game and NOT lose current skill points
+	*Implement a equip skill slot
+	*Implement a view to select skill
+	*Implement 10 slot to easily put skill in and select them
+
+
+13.I can train my current skill point every turn
+	*Skill has  a point variable
+	*After every turn, increase that point
+	*There is a train skill slot
+	*Increase the skill level after user reach that point
+
+		
+
+
+14.Create information panel(no the map panel) to show information
+	*Information for health, current skill point
+	*Monster list in the map, each monster's health
+
+		
+15.Welcome Screen
+	*When game starts, ask user whether to continue a saved game or not
+	*If new, ask for player name
+		
+		
+		
+		
+16.I can generate a random name for monster
+	*Generate a lot of name and save to txt file
+	*Create class to randomly pick up name from the file
+		
+		
+17.Implement items
+	*Using itemFactory, randomly generate an items and put a valid random Coordinate in the maps
+	*Create scroll(learn skill) and poition(heal HP and MP)
+	*Pickup items, scroll
+		

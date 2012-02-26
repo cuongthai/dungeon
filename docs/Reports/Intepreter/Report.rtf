@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12600\viewh10200\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs28 \cf0 \
+		Interpreter pattern:\
+1. Problem:\
+	Our programs sometimes need to define a "small language" with small set of rules. That language can be used to help users to enter input easier and more friendly. It can also help us to map a well-known domain into our program. Then, Interpreter pattern can help us to specify how to interpret sentences or statements in the "small language". For example, if we want to allow user to move a game character by typing in: "player move left move up", we can use Interpreter pattern to translate that sentence into objects or methods that our program can use.\
+\
+2. Description:\
+	As a simple language, it has simple grammar. In Interpreter pattern, each element in the language is called as an expression and each expression has a method called "interpret" to execute the meaning of the expression. For example, in MoveLeft expression, the interpret method will get the player and change his coordinate so that he will move left.\
+	Interpreter pattern also introduces a concept called Context which basically contain sentences of the new language which will be translated and run. That context can be created from input of users.\
+	As a result, the client code will have association with Context and the "Expression" interface which is implemented by every expression in our new language. In order to provide a clear idea about this pattern, a class diagram was created.\
+\
+3. Diagram:\
+	\
+\
+4. Advantages and Disadvantages:\
+\
+	a. Advantage:\
+		This pattern helps us create our new language easily. When you want to have a new expression, you need to add a class which implement Expression interface and may change the Context to use it.\
+	b. Disadvantages:\
+		This pattern is good for a simple language. When your language becomes complicated with so many rules, you will end up with a lot of expressions and change the Context many times to make it work.\
+		To implement this pattern, two interfaces and other expression classes will be added. So, the program will be more complicated.\
+		It will take sometimes for users and programmers who write client code to learn your new language. When the language is changed, you either need to change your code or notify your users.\
+\
+5. Example:\
+	On my Dungeon game, I want to allow user to control their characters by entering command lines, such as "player at 3 3 move left". Then, the character will move left and at position (2, 3). Even further, they can play the game totally by command lines. So, I need a controller that can take \
+user input, interpret it and call the model to change accordingly.\
+	In this scenario, the Interpreter pattern fits perfectly. When user type "player at 3 3 move left", a context will be created which contains the Player object and MoveLeft expression. In order to do that, the Context class has a method which can parse the input String into a collection of expressions.\
+	After having a Context, client code need to get the player and trigger the interpretation.Then, interpret method inside each expressions will be called. The method will find the player which is contained in the context and change its position.\
+	\
+	A project was created to demonstrate this example. It can be found here: https://github.com/rmitvn-se2/rmit-se2-2011B-BinMaster/tree/master/docs/Reports/Intepreter/Intepreter%20Example\
+\
+6. Alternative pattern and Justification:\
+	The main goal of Interpreter pattern is to interpret an input into a list of objects which can be consume by our program. We have another alternative to get the same result.\
+	In the above example, we can use Builder pattern which is used to create a player that contains a list of commands. That player will be returned to the client code. Then, the client code will simply call the player to execute all the predefined commands. So, Builder pattern can be used to achieve the same goal.\
+	Which one is better? well, I think it depends on your design. If your language has a simple list of rules and will not get more complex, Interpreter would be a good candidate. If you are more familiar with Builder pattern and want to simplify your program, a Builder would be enough.\
+\
+7. Alternative method:\
+	For a simple problem that Interpreter pattern tries to solve, a simple parser method can be used. Basically, that method will get a String parameter and perform accordingly to the input. If the input contains "player at 1 1", the parser will create a new player at that position. If the input contains "move left", parser will set the coordinate of that player to a new position.\
+	By doing like this, we can simplify our program, avoid adding additional interfaces and classes. However, you may need to split that parser method into smaller ones so that it will not become ugly.\
+\
+	}
